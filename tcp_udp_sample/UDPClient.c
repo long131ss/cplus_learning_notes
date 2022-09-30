@@ -1,4 +1,11 @@
 // Client side implementation of UDP client-server model
+// UDP Client :  
+
+// 1.Create a UDP socket.
+// 2.Send a message to the server.
+// 3.Wait until response from the server is received.
+// 4.Process reply and go back to step 2, if necessary.
+// 5.Close socket descriptor and exit.
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -27,7 +34,8 @@ int main() {
 	memset(&servaddr, 0, sizeof(servaddr));
 		
 	// Filling server information
-	servaddr.sin_family = AF_INET;
+	//The address family for the transport address. This member should always be set to AF_INET.
+	servaddr.sin_family = AF_INET;//sin means "socket internet"
 	servaddr.sin_port = htons(PORT);
 	servaddr.sin_addr.s_addr = INADDR_ANY;
 		
@@ -40,10 +48,11 @@ int main() {
 			
 	n = recvfrom(sockfd, (char *)buffer, MAXLINE,
 				MSG_WAITALL, (struct sockaddr *) &servaddr,
-				&len);
+				&len);//servaddr 也是可以从header中获取的
 	buffer[n] = '\0';
 	printf("Server : %s\n", buffer);
 	
 	close(sockfd);
 	return 0;
 }
+
