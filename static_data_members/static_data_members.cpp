@@ -13,11 +13,14 @@ class B {
 
  public:
   B() { cout << "B's constructor called " << endl; }
-  static A getA() { return a; }
+  //static A getA() { return a; }
 };
-A B::a;//个人理解,这个地方是定义,也就是初始化
+//不管是上面的class A 还是class B,类里面的都是对类的声明declration
+
+ 
+//A B::a;//个人理解,这个地方是定义,也就是初始化
 int main() {
   B b;
-  A a = b.getA();
+  //A a = b.getA();
   return 0;
 }
