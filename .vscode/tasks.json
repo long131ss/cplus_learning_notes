@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with Boost",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++11",
+                "-I/usr/include/boost",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-pthread"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

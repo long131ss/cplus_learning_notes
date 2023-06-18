@@ -78,7 +78,18 @@ int main()
 	vec.reserve(2);
 
 	// Inserting object of Move class
-	vec.push_back(Move{ 10 });
-	vec.push_back(Move{ 20 });
+	vec.emplace_back(Move{ 10 });
+	vec.emplace_back(Move{ 20 });
+	vec.emplace_back(20);
 	return 0;
+
+	//结论:从结果中可以看出，如果直接传对象给push_back和emplace_back，
+	//无论是实名对象还是匿名对象，结果都是一样的，但是emplance_back不同的是你可以直接传构造对象的参数，
+	//然后emplace_back函数里通过参数来直接构造对象，从而少了一次构造，效率更高。
+
+	//通常使用push_back()向容器中加入一个右值元素（临时对象）的时候，
+	//首先会调用构造函数构造这个临时对象,然后需要调用拷贝构造函数将这个临时对象放入容器中.原来的临时变量释放.这样造成的问题是临时变量申请的资源就浪费
+
+	//emplace_back   在容器尾部添加一个元素,这个元素原地构造，不需要触发拷贝构造.而且调用形式更加简洁，直接根据参数初始化临时对象的成员
 }
+
